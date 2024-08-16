@@ -1,0 +1,26 @@
+.slick-slide > div {
+  margin: 0px 8px;
+  display: flex !important;
+  width: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #7209b7 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #7209b7 !important;
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}
+
+.slick-initialized .slick-slide {
+  display: flex !important;
+}
