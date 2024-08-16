@@ -5,7 +5,7 @@ import store from "./store";
 import { Toaster } from "sonner";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 function App() {
   return (

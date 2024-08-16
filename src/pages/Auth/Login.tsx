@@ -39,6 +39,7 @@ const Login = () => {
     try {
       const response = await login(value).unwrap();
       dispatch(setUser(response.user));
+      localStorage.setItem("token", response.token);
       if (response.user.role === "student") navigate("/jobs");
       else navigate("/companies");
       toast.success("You have successfully login");

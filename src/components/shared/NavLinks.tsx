@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "@/store/slices/userSlice";
 import { useLogoutMutation } from "@/store/apis/authApi";
 import { RootState } from "@/store";
+import { persistor } from "@/App";
 
 type Props = {
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,12 +22,13 @@ const NavLinks = ({ setOpen }: Props) => {
     (state: RootState) => state.user
   );
   const navLinks = NAVLINKS;
-  const logoutHandler = async () => {
-    try {
-      await logout({}).unwrap();
-      dispatch(deleteUser());
-      navigate("/login");
-    } catch (error) {}
+  const logoutHandler = () => {
+    persistor.pause();
+    persistor.flush().then(() => {
+      return persistor.purge();
+    });
+    localStorage.clear();
+    dispatch(deleteUser());
   };
   return (
     <div className="nav-link flex flex-col md:flex-row items-center">

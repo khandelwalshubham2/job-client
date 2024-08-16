@@ -1,17 +1,22 @@
 import { JOB_API_END_POINT } from "@/utils/constant";
+import { getToken } from "@/utils/helper";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const jobApi = createApi({
   reducerPath: "jobApi",
   baseQuery: fetchBaseQuery({
     baseUrl: JOB_API_END_POINT,
+    prepareHeaders: (headers) => {
+      headers.set("authorization", getToken());
+      return headers;
+    },
   }),
   tagTypes: ["Job"],
   endpoints: (builder) => ({
     getRecruiterJobs: builder.query<any, void>({
       query: () => ({
         url: "/jobs-by-recruiter",
-        credentials: "include",
+        //credentials: "include",
       }),
       providesTags: (result) =>
         result
@@ -27,7 +32,7 @@ export const jobApi = createApi({
     getJobById: builder.query<any, string>({
       query: (id) => ({
         url: `/${id}`,
-        credentials: "include",
+        //credentials: "include",
       }),
       providesTags: (result, error, id) => [{ type: "Job", id }],
     }),
@@ -36,7 +41,7 @@ export const jobApi = createApi({
         url: "/",
         method: "POST",
         body: jobDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: ["Job"],
     }),
@@ -45,14 +50,14 @@ export const jobApi = createApi({
         url: `/${id}`,
         method: "PATCH",
         body: jobDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Job", id: arg.id }],
     }),
     getAllJobs: builder.query<any, string>({
       query: (url) => ({
         url: `/${url}`,
-        credentials: "include",
+        //credentials: "include",
       }),
     }),
   }),

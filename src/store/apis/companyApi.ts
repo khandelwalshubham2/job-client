@@ -1,17 +1,22 @@
 import { COMPANY_API_END_POINT } from "@/utils/constant";
+import { getToken } from "@/utils/helper";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const companyApi = createApi({
   reducerPath: "companyApi",
   baseQuery: fetchBaseQuery({
     baseUrl: COMPANY_API_END_POINT,
+    prepareHeaders: (headers) => {
+      headers.set("authorization", getToken());
+      return headers;
+    },
   }),
   tagTypes: ["Company"],
   endpoints: (builder) => ({
     getRecruiterCompanies: builder.query<any, void>({
       query: () => ({
         url: "/companies-by-rerecruiter",
-        credentials: "include",
+        //credentials: "include",
       }),
       providesTags: (result) =>
         result
@@ -27,7 +32,7 @@ export const companyApi = createApi({
     getCompanyById: builder.query<any, string>({
       query: (id) => ({
         url: `/${id}`,
-        credentials: "include",
+        //credentials: "include",
       }),
       providesTags: (result, error, id) => [{ type: "Company", id }],
     }),
@@ -36,7 +41,7 @@ export const companyApi = createApi({
         url: "/",
         method: "POST",
         body: companyDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: ["Company"],
     }),
@@ -45,7 +50,7 @@ export const companyApi = createApi({
         url: `/${companyDetails.get("id")}`,
         method: "PATCH",
         body: companyDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: (result, error, arg) => [
         { type: "Company", id: arg.get("id") },

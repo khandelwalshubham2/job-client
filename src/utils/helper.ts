@@ -3,4 +3,6 @@ const formatDate = (date: string) => {
   return detailArray.reverse().join("-");
 };
 
-export { formatDate };
+const getToken = (): string => localStorage.getItem("token") || "";
+
+export { formatDate, getToken };

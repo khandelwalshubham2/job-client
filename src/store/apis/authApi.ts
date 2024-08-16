@@ -1,4 +1,5 @@
 import { USER_API_END_POINT } from "@/utils/constant";
+import { getToken } from "@/utils/helper";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
@@ -12,7 +13,7 @@ export const authApi = createApi({
         url: "/login",
         method: "POST",
         body: loginDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
     }),
     signup: builder.mutation({
@@ -27,7 +28,7 @@ export const authApi = createApi({
         url: "/logout",
         method: "POST",
         body: body,
-        credentials: "include",
+        //credentials: "include",
       }),
     }),
     updateUser: builder.mutation({
@@ -35,7 +36,10 @@ export const authApi = createApi({
         url: "/update-me",
         method: "PATCH",
         body: updateDetails,
-        credentials: "include",
+        //credentials: "include",
+        headers: {
+          authorization: getToken(),
+        },
       }),
     }),
   }),

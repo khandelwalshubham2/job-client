@@ -1,17 +1,22 @@
 import { APPLICATION_API_END_POINT } from "@/utils/constant";
+import { getToken } from "@/utils/helper";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const applicationApi = createApi({
   reducerPath: "applicationApi",
   baseQuery: fetchBaseQuery({
     baseUrl: APPLICATION_API_END_POINT,
+    prepareHeaders: (headers) => {
+      headers.set("authorization", getToken());
+      return headers;
+    },
   }),
   tagTypes: ["Application"],
   endpoints: (builder) => ({
     getJobApplicants: builder.query<any, string>({
       query: (id) => ({
         url: `/job-applicants/${id}`,
-        credentials: "include",
+        //credentials: "include",
       }),
       providesTags: (result) =>
         result
@@ -27,7 +32,7 @@ export const applicationApi = createApi({
     getUserApplications: builder.query<any, void>({
       query: () => ({
         url: `/user-applications`,
-        credentials: "include",
+        //credentials: "include",
       }),
     }),
     submitApplication: builder.mutation({
@@ -35,7 +40,7 @@ export const applicationApi = createApi({
         url: "/",
         method: "POST",
         body: companyDetails,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: ["Application"],
     }),
@@ -44,7 +49,7 @@ export const applicationApi = createApi({
         url: `/${application.id}`,
         method: "PATCH",
         body: application,
-        credentials: "include",
+        //credentials: "include",
       }),
       invalidatesTags: (result, error, arg) => [
         { type: "Application", id: arg.id },
