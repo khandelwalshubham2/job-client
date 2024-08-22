@@ -45,4 +45,4 @@ Acknowledgments
 <p>Bcrypt - For hashing passwords.</p>
 <p>Shadcn UI - For UI components.</p>
 
-
+<h3>For backend code: https://github.com/khandelwalshubham2/job-server</h3>
