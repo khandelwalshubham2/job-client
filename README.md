@@ -36,13 +36,13 @@ Welcome to the Job Recruitment Platform, a full-stack application designed for r
   - View their application history
 
 Acknowledgments
-React - A JavaScript library for building user interfaces.
-Express - A minimal and flexible Node.js web application framework.
-MongoDB - A NoSQL database for storing application data.
-Tailwind CSS - A utility-first CSS framework for styling.
-Cloudinary - A cloud-based image and video management service.
-JWT - For secure user authentication.
-Bcrypt - For hashing passwords.
-Shadcn UI - For UI components.
+<p>React - A JavaScript library for building user interfaces.</p>
+<p>Express - A minimal and flexible Node.js web application framework.</p>
+<p>MongoDB - A NoSQL database for storing application data.</p>
+<p>Tailwind CSS - A utility-first CSS framework for styling.</p>
+<p>Cloudinary - A cloud-based image and video management service.</p>
+<p>JWT - For secure user authentication.</p>
+<p>Bcrypt - For hashing passwords.</p>
+<p>Shadcn UI - For UI components.</p>
 
 
